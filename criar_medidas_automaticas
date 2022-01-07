@@ -1,0 +1,33 @@
+
+//Cria medidas para coulunas da tabela
+  //Created by Ruy Lacerda
+  //Updated #date(07/01/2022)
+  //Faz um loop em todas as colunas da tabela selecionada
+  //Caso queira selecionar uma tabela especifica pode utilizar Model.Tables["Nome da Tabela"].Columns
+foreach (var c in Selected.Tables.Columns)
+{
+    //Verifica se o nome da coluna comeca com ID
+    if (c.Name.Substring(0,2)!="ID")
+    {
+        //Cria a medida
+        var Medida =c.Table.AddMeasure(
+            "Soma de" + c.Name, //Nome da medida
+            "SUM(" + c.DaxObjectFullName + ")", //Expressao DAX
+            c.DisplayFolder //Pasta da Medida
+        );
+        //Formata a medida
+        Medida.FormatString="0.00";
+
+        //Cria a Descricao da Medida
+        Medida.Description = "Essa medida eh a soma da coluna " + c.DaxObjectFullName;
+
+        //Oculta a coluna base da Medida
+        c.IsHidden = true;
+    } 
+    else
+    {
+          //Oculta a coluna
+        c.IsHidden = true;
+    }
+    
+}
