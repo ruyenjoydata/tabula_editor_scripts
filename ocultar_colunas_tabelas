@@ -1,0 +1,12 @@
+//Created by Ruy Lacerda
+//Updated #date(07/01/2022)
+
+// Oculta todas as colunas da tabela
+
+//Loop no C#     
+foreach(
+    //var coluna in Model.Tables["TableName"].Columns) - Pode ser utilizado caso queira declara a tabela em questao
+    var coluna in Selected.Table.Columns)
+{
+    coluna.IsHidden = true;
+}
